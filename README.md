@@ -28,4 +28,7 @@ This project is licensed under the MIT License — free for personal and commerc
 
 You can host it easily using GitHub Pages.
 ## 📁 Project Structure
-
+css-grid-2x2-image-gallery/
+│
+├── index.html
+└── README.md
