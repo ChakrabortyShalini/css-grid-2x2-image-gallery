@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Button Styling Example</title>
+  <style>
+  :root{
+    --gap: 16px;          /* spacing between items */
+    --radius: 8px;        /* rounded corners */
+    --max-width: 800px;   /* optional wrapper width */
+  }
+
+  /* Page layout (optional) */
+  body{
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f7f7fb;
+    padding: 24px;
+  }
+
+  /* Gallery wrapper */
+  .gallery-wrap{
+    width: 100%;
+    max-width: var(--max-width);
+  }
+
+  /* Grid: 2 columns x 2 rows, equal gap, centered items */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+    align-items: center;   /* vertical alignment within row */
+    justify-items: stretch;/* make each cell fill its column */
+  }
+
+  /* Each cell forces a square aspect ratio so all items are equal height */
+  .grid-item {
+    aspect-ratio: 1 / 1;   /* keeps cell square */
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #ddd;      /* fallback color while image loads */
+    display: block;
+    position: relative;
+  }
+
+  /* Images fill the cell, maintain cover, and are aligned center */
+  .grid-item img {
+    position: absolute;
+    inset: 0;              /* top/right/bottom/left: 0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* crop to cover the square */
+    object-position: center;
+    display: block;
+  }
+
+  /* Optional hover effect for better UX */
+  .grid-item:focus-within,
+  .grid-item:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+
+  /* Responsive: stack into 1 column on narrow screens */
+  @media (max-width: 420px){
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="gallery-wrap">
+  <div class="grid" role="list">
+    <figure class="grid-item" role="listitem">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80&auto=format&fit=crop"
+           alt="Mountain lake at sunrise" loading="lazy">
+    </figure>
+
+    <figure class="grid-item" role="listitem">
+      <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?w=1200&q=80&auto=format&fit=crop"
+           alt="Forest path" loading="lazy">
+    </figure>
+
+    <figure class="grid-item" role="listitem">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80&auto=format&fit=crop"
+           alt="Coastal cliffs" loading="lazy">
+    </figure>
+
+    <figure class="grid-item" role="listitem">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80&auto=format&fit=crop"
+           alt="City skyline at dusk" loading="lazy">
+    </figure>
+  </div>
+</div>
+
+</body>
+</html>
